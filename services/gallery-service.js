@@ -40,8 +40,6 @@ function getKeyWords() {
 }
 
 function selectedImg(imgId){
-    setCanvas();
-    renderCanvas(gImgs[imgId-1].url);
+    setCanvas(gImgs[imgId-1].url);
+    renderCanvas();
 }
-
-

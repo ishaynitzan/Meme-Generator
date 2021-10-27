@@ -23,21 +23,39 @@ function renderKeyWords() {
     const words = getKeyWords();
     var strHtml = '';
     for (const key in words) {
-        const size = words[key]%5;
+        const size = words[key] % 5;
         strHtml += `<li class="flex size${size}">${key}</li>`;
     }
-
     document.querySelector(`.key-words`).innerHTML = strHtml;
 }
 
 
-function onSelectedImg(elImg){
+function onSelectedImg(elImg) {
     document.querySelector(`main`).classList.toggle("hidden");
     document.querySelector(`.meme-editor`).classList.toggle("hidden");
     selectedImg(elImg.dataset.id);
 }
 
-function onClickGallery(){
+function onClickGallery() {
     document.querySelector(`main`).classList.remove("hidden");
     document.querySelector(`.meme-editor`).classList.add("hidden");
+}
+
+
+function onAddTxt(input) {
+    addText(input.value);
+    document.querySelector(`.txt-input`).value = '';
+
+}
+function onMoveUp(){
+    moveUp();
+}
+function onMovedDown(){
+    movedDown();
+}
+function onFontGrow(){
+    fontGrow();
+}
+function onFontShrink(){
+    fontShrink();
 }

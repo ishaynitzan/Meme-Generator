@@ -42,18 +42,20 @@
             </div>
         </div>
         <div class="control-box flex column justify-center align-center ">
-            <div class="txt-intput flex justify-center"><input type="text" name="" id="" placeholder="add text"></div>
+            <div class="txt-line flex justify-center">
+                <input type="text" name="" id="" placeholder="add text" onchange="onAddTxt(this)" class="txt-input">
+            </div>
             <div class="editor-txt flex row align-center">
-                <div class="editor-btn move-up">↑</div>
-                <div class="editor-btn move-down">↓</div>
+                <div class="editor-btn move-up" onclick="onMoveUp()">↑</div>
+                <div class="editor-btn move-down" onclick="onMovedDown()">↓</div>
                 <div class="editor-btn switch">↑↓</div>
-                <div class="editor-btn add-txt">✚</div>
-                <div class="editor-btn delete-txt">✂︎</div>
+                <div class="editor-btn add-txt" >✚</div>
+                <div class="editor-btn delete-txt" >✂︎</div>
             </div>
             <div class="editor-font flex column align-center">
                 <div class="flex row space-around">
-                    <div class="editor-btn font-grow">A+</div>
-                    <div class="editor-btn font-srink">A-</div>
+                    <div class="editor-btn font-grow" onclick="onFontGrow()">A+</div>
+                    <div class="editor-btn font-shrink" onclick="onFontShrink()">A-</div>
                     <div class="editor-btn font-left">◀︎</div>
                     <div class="editor-btn font-center">▲</div>
                     <div class="editor-btn font-right">►</div>
