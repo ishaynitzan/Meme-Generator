@@ -2,7 +2,9 @@
 
 function onInit() {
     renderGallery();
-    renderKeyWords() 
+    renderKeyWords();
+    setCanvas();
+    resizeCanvas();
 }
 
 function renderGallery() {
@@ -32,5 +34,12 @@ function renderKeyWords() {
 
 
 function onSelectedImg(elImg){
+    document.querySelector(`main`).classList.toggle("hidden");
+    document.querySelector(`.meme-editor`).classList.toggle("hidden");
     selectedImg(elImg.dataset.id);
+}
+
+function onClickGallery(){
+    document.querySelector(`main`).classList.remove("hidden");
+    document.querySelector(`.meme-editor`).classList.add("hidden");
 }

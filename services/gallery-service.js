@@ -41,4 +41,8 @@ function getKeyWords() {
 
 function selectedImg(imgId){
 console.log(imgId);
+console.log(gImgs[imgId-1].url);
+renderImg(gImgs[imgId-1].url);
 }
+
+

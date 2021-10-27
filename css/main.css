@@ -48,7 +48,7 @@ input:focus-visible {
 }
 
 input {
-   text-align: center;
+    text-align: center;
 }
 
 /* LAYOUT */
@@ -211,13 +211,17 @@ nav {
 }
 
 .canvas-container {
-    width: 38%;
+    width: 50%;
     border-radius: 2rem;
     background-color: #383B42;
 }
 
-.editor-control {
-    width: 38%;
+canvas {
+    width: 100%;
+}
+
+.control-box {
+    width: 40%;
     justify-content: space-evenly;
     border-radius: 2rem;
     background-color: #383B42;
@@ -236,6 +240,11 @@ nav {
     box-shadow: inset 0 -3px 1px 0 rgba(0, 0, 0, 0.4), inset 0 3px 1px 0 rgba(255, 255, 255, 0.4);
 }
 
+.editor-btn:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
 .txt-intput {
     width: 90%;
 }
@@ -250,7 +259,6 @@ nav {
 }
 
 .editor-txt {
-    justify-content: space-between;
     width: 90%;
     padding: 1em;
 }
@@ -277,12 +285,17 @@ nav {
 }
 
 .font-famely {
-    width: 6.7em;
+    display: flex;
+    flex-grow: 1;
 }
 
 .stickers-box {
     width: 90%;
     background-color: #fff;
+}
+
+.stickers-box:hover {
+    opacity: 1;
 }
 
 .action-box {

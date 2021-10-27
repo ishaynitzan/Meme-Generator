@@ -14,13 +14,13 @@
     <header class="header flex align-center row">
         <div><img src="./LOGO/LOGO.png" alt="" class="logo"></div>
         <div class="header-nav flex row">
-            <div class="btn btn-gallery">gallery</div>
+            <div class="btn btn-gallery" onclick="onClickGallery()">gallery</div>
             <div class="btn btn-my-meme">my meme</div>
             <div class="btn btn-about">about</div>
         </div>
     </header>
 
-    <main class="flex column hidden">
+    <main class="flex column">
         <nav class="flex row align-center">
             <div class="search flex row align-center">
                 <input type="text" name="search" class="search-input" placeholder="Search">
@@ -37,11 +37,11 @@
 
     </main>
 
-    <div class="meme-editor flex row">
-        <div class="canvas-container felx">
-            <canvas></canvas>
+    <div class="meme-editor flex row hidden">
+        <div class="canvas-container flex justify-center align-center">
+            <canvas id="my-canvas" onclick="draw(event)" class="flex"></canvas>
         </div>
-        <div class="editor-control flex column justify-center align-center">
+        <div class="control-box flex column justify-center align-center ">
             <div class="txt-intput flex justify-center"><input type="text" name="" id="" placeholder="add text"></div>
             <div class="editor-txt flex row align-center">
                 <div class="editor-btn move-up">↑</div>
@@ -50,20 +50,24 @@
                 <div class="editor-btn add-txt">✚</div>
                 <div class="editor-btn delete-txt">✂︎</div>
             </div>
-            <div class="editor-font flex row  align-center">
-                <div class="editor-btn font-grow">A+</div>
-                <div class="editor-btn font-srink">A-</div>
-                <div class="editor-btn font-left">◀︎</div>
-                <div class="editor-btn font-center">▲</div>
-                <div class="editor-btn font-right">►</div>
-                <div class="editor-btn font-famely">font</div>
-                <div class="editor-btn stroke-color">
-                    S
-                    <input type="color" name="" id="">
+            <div class="editor-font flex column align-center">
+                <div class="flex row">
+                    <div class="editor-btn font-grow">A+</div>
+                    <div class="editor-btn font-srink">A-</div>
+                    <div class="editor-btn font-left">◀︎</div>
+                    <div class="editor-btn font-center">▲</div>
+                    <div class="editor-btn font-right">►</div>
                 </div>
-                <div class="editor-btn font-color">
-                    F
-                    <input type="color" name="" id="">
+                <div class="flex row">
+                    <div class="editor-btn font-famely">font</div>
+                    <div class="editor-btn stroke-color">
+                        S
+                        <input type="color" name="" id="">
+                    </div>
+                    <div class="editor-btn font-color">
+                        F
+                        <input type="color" name="" id="">
+                    </div>
                 </div>
             </div>
             <div class="stickers-box editor-btn flex row">
@@ -82,6 +86,7 @@
 </body>
 <script src="./services/util-service.js"></script>
 <script src="./services/localStorage-service.js"></script>
+<script src="./services/canvas-service.js"></script>
 <script src="./services/gallery-service.js"></script>
 <script src="./js/gallery-controller.js"></script>
 
