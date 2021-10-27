@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
-<body  onload="onInit()" class="flex column">
+<body onload="onInit()" class="flex column">
 
     <header class="header flex align-center row">
         <div><img src="./LOGO/LOGO.png" alt="" class="logo"></div>
@@ -20,7 +20,7 @@
         </div>
     </header>
 
-    <main class="flex column">
+    <main class="flex column hidden">
         <nav class="flex row align-center">
             <div class="search flex row align-center">
                 <input type="text" name="search" class="search-input" placeholder="Search">
@@ -32,14 +32,57 @@
         </nav>
         <div class="gallery grid">
             <div><img src="./meme-imgs (square)/1.jpg" alt=""></div>
-            
+
         </div>
 
     </main>
+
+    <div class="meme-editor flex row">
+        <div class="canvas-container felx">
+            <canvas></canvas>
+        </div>
+        <div class="editor-control flex">
+            <div class="txt-intput"></div>
+            <div>
+                <div class="editor-btn move-up">↑</div>
+                <div class="editor-btn move-sown">↓</div>
+                <div class="editor-btn switch">↑↓</div>
+                <div class="editor-btn add-txt">✚</div>
+                <div class="editor-btn delete-txt">✂︎</div>
+            </div>
+            <div class="editor-font flex">
+                <div class="editor-btn txt-grow">A+</div>
+                <div class="editor-btn txt-srink">A-</div>
+                <div class="editor-btn txt-left">◀︎</div>
+                <div class="editor-btn txt-center">▲</div>
+                <div class="editor-btn txt-right">►</div>
+                <div class="editor-btn txt-font">font</div>
+                <div class="editor-btn stroke-color">
+                    S
+                    <input type="color" name="" id="">
+                </div>
+                <div class="editor-btn font-color">
+                    F
+                    <input type="color" name="" id="">
+                </div>
+            </div>
+            <div class="stickers-box">
+            </div>
+            <div class="action-box">
+                <div><a href="">Share</a></div>
+                <div><a href="">download</a></div>
+            </div>
+        </div>
+
+
+
+    </div>
+
     <footer class="main-container"></footer>
 </body>
 <script src="./services/util-service.js"></script>
 <script src="./services/localStorage-service.js"></script>
 <script src="./services/gallery-service.js"></script>
 <script src="./js/gallery-controller.js"></script>
+
 </html>

@@ -197,6 +197,28 @@ nav {
     box-shadow: 0 0 5px 2px #fff;
 }
 
+/* MEME-EDITOR */
+
+.meme-editor{
+    justify-content: space-around;
+    flex-grow: 1;
+    border-radius: 2rem;
+    margin: 1rem;
+}
+
+.canvas-container{
+    width: 38%;
+    /* flex-grow: 1; */
+    border-radius: 2rem;
+    background-color: #383B42; 
+}
+.editor-control{
+    width: 38%;
+    /* flex-grow: 1; */
+    border-radius: 2rem;
+    background-color: #383B42; 
+}
+
 /* FOOTER */
 
 footer {
