@@ -107,17 +107,20 @@ nav {
 }
 
 .search {
+    justify-content: space-between;
     background-color: #22252C;
+    width: 40%;
     border-radius: 2em;
     padding: 0 1em;
 }
 
 .search-input {
+    flex-grow: 1;
     font-size: 1.2rem;
-    background-color: #22252C;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem 1rem 1rem ;
     border-radius: 2em;
     border: none;
+    background-color: #22252C;
     color: #fff;
 }
 
@@ -136,21 +139,22 @@ nav {
 .key-words {
     justify-content: space-evenly;
     padding: 1rem 1rem;
-    width: 12rem;
+    width: 30%;
     border-radius: 2em;
     font-size: 1.2rem;
     color: #fff;
     background-color: rgba(255, 255, 255, 0.4);
 }
-.key-words li{
-    padding: 0 2px;
+
+.key-words li {
+    padding: 0 3px;
     border-radius: 1em;
 }
 
 .key-words li:hover {
-    color:rgba(0, 0, 0, 0.4) ;
+    color: rgba(0, 0, 0, 0.4);
     background-color: #fff;
-    padding: 0 2px;
+    padding: 0 3px;
     border-radius: 1em;
     cursor: pointer;
 }
@@ -169,10 +173,28 @@ nav {
 }
 
 .gallery {
+    justify-content: center;
+    margin-top: 10px;
     grid-template: "header" "main" "footer";
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 10fr 1fr;
+    grid-template-columns: repeat(auto-fill, 200px);
     grid-auto-rows: auto;
+    gap: 10px 10px;
+}
+
+.gallery div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.memeImg {
+    height: 200px;
+}
+
+.memeImg:hover{
+    cursor: pointer;
+    opacity: 0.5;
+    box-shadow: 0 0 5px 2px #fff;
 }
 
 /* FOOTER */
