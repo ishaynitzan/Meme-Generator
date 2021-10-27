@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme-Generator</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body class="flex column">
+
+    <header class="header flex align-center row">
+        <div><img src="./LOGO/LOGO.png" alt="" class="logo"></div>
+        <div class="header-nav flex row">
+            <div class="btn btn-gallery">gallery</div>
+            <div class="btn btn-my-meme">my meme</div>
+            <div class="btn btn-about">about</div>
+        </div>
+    </header>
+
+    <main class="flex column">
+        <nav class="flex row align-center">
+            <div class="search flex row align-center">
+                <input type="text" name="search" class="search-input" placeholder="Search">
+                <div >☌</div>
+            </div>
+            <ul class="key-words flex row">
+                <li class="flex">Funny</li>
+                <li class="flex">a</li>
+                <li class="flex">b</li>
+                <li class="flex">c</li>
+            </ul>
+            <div class="btn-more">More</div>
+        </nav>
+        <div class="gallery grid main-container"></div>
+
+    </main>
+    <footer class="main-container"></footer>
+</body>
+<script src="./services/util-service.js"></script>
+<script src="./services/localStorage-service.js"></script>
+<script src="./services/gallery-service.js"></script>
+<script src="./js/gallery-controller.js"></script>
+<script src="./js/gallery.js"></script>
+
+</html>
