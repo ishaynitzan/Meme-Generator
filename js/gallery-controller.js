@@ -3,8 +3,6 @@
 function onInit() {
     renderGallery();
     renderKeyWords();
-    setCanvas();
-    resizeCanvas();
 }
 
 function renderGallery() {

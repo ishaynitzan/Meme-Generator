@@ -27,6 +27,10 @@ body {
     align-items: center;
 }
 
+.space-around{
+    justify-content: space-around;
+}
+
 .row {
     flex-direction: row;
 }
@@ -205,19 +209,24 @@ nav {
 
 .meme-editor {
     justify-content: space-around;
-    flex-grow: 1;
+    height: 100vh;
     border-radius: 2rem;
     margin: 1rem;
 }
 
-.canvas-container {
-    width: 50%;
+.left-container {
+    width: 50vw;
     border-radius: 2rem;
     background-color: #383B42;
 }
+.canvas-container{
+    display: flex;
+    width: 300px;
+    height: 300px;
+}
 
 canvas {
-    width: 100%;
+    aspect-ratio:  1 / 1;
 }
 
 .control-box {
@@ -259,6 +268,7 @@ canvas {
 }
 
 .editor-txt {
+    justify-content: space-evenly;
     width: 90%;
     padding: 1em;
 }
@@ -276,7 +286,6 @@ canvas {
 }
 
 .editor-font {
-    justify-content: space-between;
     width: 90%;
     padding: 1em;
     flex-wrap: wrap;
@@ -284,9 +293,13 @@ canvas {
     background-color: #19A59F;
 }
 
+.editor-font>*{
+    width: 90%;
+}
+
 .font-famely {
+    width: 52%;
     display: flex;
-    flex-grow: 1;
 }
 
 .stickers-box {

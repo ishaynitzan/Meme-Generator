@@ -2,19 +2,37 @@
 
 var gElCanvas;
 var gCtx;
+var gCurrImgUrl;
 
 function setCanvas() {
+    console.log('setCanvas')
     gElCanvas = document.querySelector(`canvas`)
     gCtx = gElCanvas.getContext('2d');
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        renderCanvas()
+    });
+}
+
+function renderCanvas(imgUrl) {
+    console.log('renderCanvas');
+    gCurrImgUrl = imgUrl;
+    var img = new Image();
+    img.src = gCurrImgUrl;
+    img.onload = function () {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    }
 }
 
 function resizeCanvas() {
-    var elContainer = document.querySelector('.canvas-container');
-    // Note: changing the canvas dimension this way clears the canvas
-    gElCanvas.width = elContainer.offsetWidth - 20;
-    // Unless needed, better keep height fixed.
-    //   gCanvas.height = elContainer.offsetHeight
+    console.log('resizeCanvas');
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = 300;
+    gElCanvas.height = 300;
 }
+//     gElCanvas.width = elContainer.clientWidth;
+//     gElCanvas.height = elContainer.clientHeight;
+// }
 
 
 function draw(ev) {
@@ -24,14 +42,3 @@ function draw(ev) {
     const { offsetX, offsetY } = ev
 }
 
-function renderImg(imgUrl) {
-    console.log('imgUrl',imgUrl);
-    var img = new Image();
-    img.src = imgUrl;
-
-    img.onload = function () {
-        // gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height, 0, 0, gElCanvas.width, gElCanvas.height);
-
-    }
-}

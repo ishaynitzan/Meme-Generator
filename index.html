@@ -31,15 +31,15 @@
             <div class="btn-more">More</div>
         </nav>
         <div class="gallery grid">
-            <div><img src="./meme-imgs (square)/1.jpg" alt=""></div>
-
         </div>
 
     </main>
 
     <div class="meme-editor flex row hidden">
-        <div class="canvas-container flex justify-center align-center">
-            <canvas id="my-canvas" onclick="draw(event)" class="flex"></canvas>
+        <div class="left-container flex justify-center align-center">
+            <div class="canvas-container">
+                <canvas id="my-canvas" width="500" height="500" onclick="draw(event)"></canvas>
+            </div>
         </div>
         <div class="control-box flex column justify-center align-center ">
             <div class="txt-intput flex justify-center"><input type="text" name="" id="" placeholder="add text"></div>
@@ -51,14 +51,14 @@
                 <div class="editor-btn delete-txt">✂︎</div>
             </div>
             <div class="editor-font flex column align-center">
-                <div class="flex row">
+                <div class="flex row space-around">
                     <div class="editor-btn font-grow">A+</div>
                     <div class="editor-btn font-srink">A-</div>
                     <div class="editor-btn font-left">◀︎</div>
                     <div class="editor-btn font-center">▲</div>
                     <div class="editor-btn font-right">►</div>
                 </div>
-                <div class="flex row">
+                <div class="flex row space-around">
                     <div class="editor-btn font-famely">font</div>
                     <div class="editor-btn stroke-color">
                         S
