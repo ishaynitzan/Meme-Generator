@@ -43,6 +43,14 @@ body {
     display: grid;
 }
 
+input:focus-visible {
+    outline: 0;
+}
+
+input {
+   text-align: center;
+}
+
 /* LAYOUT */
 
 .main-container {
@@ -117,15 +125,11 @@ nav {
 .search-input {
     flex-grow: 1;
     font-size: 1.2rem;
-    padding: 1rem 1rem 1rem 1rem ;
+    padding: 1rem 1rem 1rem 1rem;
     border-radius: 2em;
     border: none;
     background-color: #22252C;
     color: #fff;
-}
-
-.search-input:focus-visible {
-    outline: 0;
 }
 
 .search div {
@@ -191,7 +195,7 @@ nav {
     height: 200px;
 }
 
-.memeImg:hover{
+.memeImg:hover {
     cursor: pointer;
     opacity: 0.5;
     box-shadow: 0 0 5px 2px #fff;
@@ -199,24 +203,105 @@ nav {
 
 /* MEME-EDITOR */
 
-.meme-editor{
+.meme-editor {
     justify-content: space-around;
     flex-grow: 1;
     border-radius: 2rem;
     margin: 1rem;
 }
 
-.canvas-container{
+.canvas-container {
     width: 38%;
-    /* flex-grow: 1; */
     border-radius: 2rem;
-    background-color: #383B42; 
+    background-color: #383B42;
 }
-.editor-control{
+
+.editor-control {
     width: 38%;
-    /* flex-grow: 1; */
+    justify-content: space-evenly;
     border-radius: 2rem;
-    background-color: #383B42; 
+    background-color: #383B42;
+}
+
+.editor-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+    font-size: 1.3rem;
+    width: 2em;
+    height: 2em;
+    background-color: #fff;
+    border-radius: .5em;
+    box-shadow: inset 0 -3px 1px 0 rgba(0, 0, 0, 0.4), inset 0 3px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.txt-intput {
+    width: 90%;
+}
+
+.txt-intput input {
+    border-radius: 2rem;
+    border: 0;
+    box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.4);
+    background-color: #EBEEF3;
+    width: 100%;
+    height: 2rem;
+}
+
+.editor-txt {
+    justify-content: space-between;
+    width: 90%;
+    padding: 1em;
+}
+
+.move-up, .move-down, .switch {
+    background-color: rgba(52, 171, 202);
+}
+
+.add-txt {
+    background-color: #3ccc52;
+}
+
+.delete-txt {
+    background-color: #d62837;
+}
+
+.editor-font {
+    justify-content: space-between;
+    width: 90%;
+    padding: 1em;
+    flex-wrap: wrap;
+    border-radius: 1em;
+    background-color: #19A59F;
+}
+
+.font-famely {
+    width: 6.7em;
+}
+
+.stickers-box {
+    width: 90%;
+    background-color: #fff;
+}
+
+.action-box {
+    width: 90%;
+    justify-content: space-between;
+}
+
+.action-box div a {
+    width: 5em;
+    text-decoration: none;
+    color: #fff;
+}
+
+.share-btn {
+    background-color: rgb(30, 124, 211);
+}
+
+.download-btn {
+    background-color: rgb(143, 68, 187);
 }
 
 /* FOOTER */

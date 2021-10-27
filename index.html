@@ -41,22 +41,22 @@
         <div class="canvas-container felx">
             <canvas></canvas>
         </div>
-        <div class="editor-control flex">
-            <div class="txt-intput"></div>
-            <div>
+        <div class="editor-control flex column justify-center align-center">
+            <div class="txt-intput flex justify-center"><input type="text" name="" id="" placeholder="add text"></div>
+            <div class="editor-txt flex row align-center">
                 <div class="editor-btn move-up">↑</div>
-                <div class="editor-btn move-sown">↓</div>
+                <div class="editor-btn move-down">↓</div>
                 <div class="editor-btn switch">↑↓</div>
                 <div class="editor-btn add-txt">✚</div>
                 <div class="editor-btn delete-txt">✂︎</div>
             </div>
-            <div class="editor-font flex">
-                <div class="editor-btn txt-grow">A+</div>
-                <div class="editor-btn txt-srink">A-</div>
-                <div class="editor-btn txt-left">◀︎</div>
-                <div class="editor-btn txt-center">▲</div>
-                <div class="editor-btn txt-right">►</div>
-                <div class="editor-btn txt-font">font</div>
+            <div class="editor-font flex row  align-center">
+                <div class="editor-btn font-grow">A+</div>
+                <div class="editor-btn font-srink">A-</div>
+                <div class="editor-btn font-left">◀︎</div>
+                <div class="editor-btn font-center">▲</div>
+                <div class="editor-btn font-right">►</div>
+                <div class="editor-btn font-famely">font</div>
                 <div class="editor-btn stroke-color">
                     S
                     <input type="color" name="" id="">
@@ -66,11 +66,11 @@
                     <input type="color" name="" id="">
                 </div>
             </div>
-            <div class="stickers-box">
+            <div class="stickers-box editor-btn flex row">
             </div>
-            <div class="action-box">
-                <div><a href="">Share</a></div>
-                <div><a href="">download</a></div>
+            <div class="action-box flex row align-center">
+                <div class="flex"><a href="" class="editor-btn share-btn">Share</a></div>
+                <div class="flex"><a href="" class="editor-btn download-btn">Download</a></div>
             </div>
         </div>
 
