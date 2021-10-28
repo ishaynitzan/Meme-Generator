@@ -382,8 +382,6 @@ canvas {
     color: #fff;
 }
 
-
-
 p span {
     color: #ffce12;
 }
@@ -408,5 +406,24 @@ footer {
     }
     .gallery {
         grid-template-columns: repeat(2, 200px);
+    }
+    .meme-editor {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .canvas-container {
+        width: 600px;
+        flex-grow: 1;
+    }
+    .control-box {
+        height: 35vh;
+        width: 600px;
+    }
+    .editor-txt{
+        flex-wrap: wrap;
+    }
+    .editor-font{
+        padding: 0;
     }
 }
