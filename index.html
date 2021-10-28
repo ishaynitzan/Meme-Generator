@@ -47,10 +47,10 @@
                 <input type="text" name="" id=""  class="txt-input" placeholder="add text">
             </div>
             <div class="editor-txt flex row align-center">
-                <div class="editor-btn move-up" onclick="onMoveUp()">
+                <div class="editor-btn move-up" onclick="onHandleLine('up')">
                     <i class="fas fa-arrow-up"></i>
                 </div>
-                <div class="editor-btn move-down" onclick="onMovedDown()">
+                <div class="editor-btn move-down" onclick="onHandleLine('down')">
                     <i class="fas fa-arrow-down"></i></div>
                 <div class="editor-btn switch" onclick="onSwitchLine()">
                     <i class="fas fa-exchange-alt"></i></div>
@@ -59,8 +59,8 @@
             </div>
             <div class="editor-font flex column align-center">
                 <div class="flex row space-around">
-                    <div class="editor-btn font-grow" onclick="onFontGrow()">A+</div>
-                    <div class="editor-btn font-shrink" onclick="onFontShrink()">A-</div>
+                    <div class="editor-btn font-grow" onclick="onHandleLine('grow')">A+</div>
+                    <div class="editor-btn font-shrink" onclick="onHandleLine('shrink')">A-</div>
                     <div class="editor-btn font-left" onclick="onAlignLine('end')">
                         <i class="fas fa-align-left"></i>
                     </div>

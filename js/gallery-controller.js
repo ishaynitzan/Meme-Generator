@@ -57,7 +57,7 @@ function onClickAbout() {
     document.querySelector(`.meme-editor`).classList.add("hidden");
     document.querySelector(`.my-meme`).classList.add("hidden");
 }
-function onSearchMeme(){
+function onSearchMeme() {
     console.log('onSearchMeme');
     const value = document.querySelector(`.search-input`).value;
     console.log(value);
@@ -70,22 +70,25 @@ function onAddLine() {
     const value = document.querySelector(`.txt-input`).value;
     if (value !== '') addLine(value);
     document.querySelector(`.txt-input`).value = '';
+}
 
+
+function onHandleLine(keyword) {
+    handleLine(keyword);
 }
-function onMoveUp() {
-    handleLine('up');
-}
-function onMovedDown() {
-    handleLine('down');
-}
-function onFontGrow() {
-    handleLine('grow');
-}
-function onFontShrink() {
-    handleLine('shrink');
-}
+// function onMoveUp() {
+//     handleLine('up');
+// }
+// function onMovedDown() {
+//     handleLine('down');
+// }
+// function onFontGrow() {
+//     handleLine('grow');
+// }
+// function onFontShrink() {
+//     handleLine('shrink');
+// }
 function onSwitchLine() {
-    console.log('onSwitchLine');
     switchLine();
 }
 function onAlignLine(value) {

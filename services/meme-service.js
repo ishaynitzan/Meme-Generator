@@ -51,8 +51,14 @@ function setKeyWord(keyWord) {
     gFilter = keyWord;
 }
 
+function resetGMeme() {
+    gMeme.selectedLineIdx = 0;
+    gMeme.lines= [];
+    
+}
 function clickImg(imgId) {
     gMeme.selectedImgId = imgId;
+    resetGMeme();
     setCanvas();
     resizeCanvas();
 }
@@ -206,10 +212,4 @@ function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL();
     elLink.href = data;
     elLink.download = 'my-meme.jpg';
-}
-
-function clickShear() {
-    var url = gElCanvas.toDataURL("image/png", 0.1);
-    window.open(`https://www.facebook.com/sharer/sharer.php&pu=${url}`);
-    return false;
 }
