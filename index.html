@@ -95,10 +95,9 @@
             <div class="stickers-box editor-btn flex row">
             </div>
             <div class="action-box flex row align-center">
-                <div class="flex"><button class="editor-btn action-btn share-btn">Share</button></div>
-                <div class="flex"><button class="editor-btn action-btn save-btn" onclick="onSaveMeme()">Save</button>
-                </div>
-                <div class="flex"><button class="editor-btn action-btn download-btn">Download</button></div>
+                <div class="flex"><button class="editor-btn action-btn share-btn" onclick="onClickShear()">Share</button></div>
+                <div class="flex"><button class="editor-btn action-btn save-btn" onclick="onSaveMeme()">Save</button></div>
+                <div class="flex"><a class="editor-btn action-btn download-btn" onclick="downloadCanvas(this)" download="">Download</a></div>
             </div>
         </div>
     </div>
@@ -111,12 +110,13 @@
 
     <div class="about light-bg  flex column align-center hidden">
         <div class="title">ABOUT</div>
-
+        <p>hi, you found THE BEST Meme Generator in the web!<br>
+        Created by <span>ishay nitzan</span><br>
+        as part of an <span>Coding academy</span> course.</p>
     </div>
 
     <footer class="main-container"></footer>
 </body>
-<script src="./services/util-service.js"></script>
 <script src="./services/localStorage-service.js"></script>
 <script src="./services/meme-service.js"></script>
 <script src="./js/gallery-controller.js"></script>

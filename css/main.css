@@ -373,6 +373,21 @@ canvas {
     background-color: rgb(143, 68, 187);
 }
 
+/* ABOUT */
+
+.about p {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+
+
+p span {
+    color: #ffce12;
+}
+
 /* FOOTER */
 
 footer {

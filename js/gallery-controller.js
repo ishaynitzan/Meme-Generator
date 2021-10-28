@@ -85,6 +85,7 @@ function onFontShrink() {
     handleLine('shrink');
 }
 function onSwitchLine() {
+    console.log('onSwitchLine');
     switchLine();
 }
 function onAlignLine(value) {
@@ -127,4 +128,7 @@ function renderMyMeme() {
 function onKeyWord(elWord) {
     setKeyWord(elWord.innerText);
     renderGallery();
+}
+function onClickShear() {
+    clickShear();
 }

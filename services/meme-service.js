@@ -6,27 +6,27 @@ var gKeywords = { 'all': 0, 'men': 0, 'animal': 0, 'baby': 0, 'toy': 0 }
 var gFilter = 'all'
 var gImgs = [
     { id: 1, url: './meme-imgs (square)/1.jpg', keywords: ['all', 'men'] },
-    { id: 2, url: './meme-imgs (square)/2.jpg', keywords: ['all','animal'] },
-    { id: 3, url: './meme-imgs (square)/3.jpg', keywords: ['all','animal', 'baby'] },
-    { id: 4, url: './meme-imgs (square)/4.jpg', keywords: ['all','animal'] },
-    { id: 5, url: './meme-imgs (square)/5.jpg', keywords: ['all','baby'] },
-    { id: 6, url: './meme-imgs (square)/6.jpg', keywords: ['all','men'] },
-    { id: 7, url: './meme-imgs (square)/7.jpg', keywords: ['all','baby'] },
-    { id: 8, url: './meme-imgs (square)/8.jpg', keywords: ['all','men'] },
-    { id: 9, url: './meme-imgs (square)/9.jpg', keywords: ['all','baby'] },
-    { id: 10, url: './meme-imgs (square)/10.jpg', keywords: ['all','men'] },
-    { id: 11, url: './meme-imgs (square)/11.jpg', keywords: ['all','men'] },
-    { id: 12, url: './meme-imgs (square)/12.jpg', keywords: ['all','men'] },
-    { id: 13, url: './meme-imgs (square)/13.jpg', keywords: ['all','men'] },
-    { id: 14, url: './meme-imgs (square)/14.jpg', keywords: ['all','men'] },
-    { id: 15, url: './meme-imgs (square)/15.jpg', keywords: ['all','men'] },
-    { id: 16, url: './meme-imgs (square)/16.jpg', keywords: ['all','men'] },
-    { id: 17, url: './meme-imgs (square)/17.jpg', keywords: ['all','men'] },
-    { id: 18, url: './meme-imgs (square)/18.jpg', keywords: ['all','toy'] }
+    { id: 2, url: './meme-imgs (square)/2.jpg', keywords: ['all', 'animal'] },
+    { id: 3, url: './meme-imgs (square)/3.jpg', keywords: ['all', 'animal', 'baby'] },
+    { id: 4, url: './meme-imgs (square)/4.jpg', keywords: ['all', 'animal'] },
+    { id: 5, url: './meme-imgs (square)/5.jpg', keywords: ['all', 'baby'] },
+    { id: 6, url: './meme-imgs (square)/6.jpg', keywords: ['all', 'men'] },
+    { id: 7, url: './meme-imgs (square)/7.jpg', keywords: ['all', 'baby'] },
+    { id: 8, url: './meme-imgs (square)/8.jpg', keywords: ['all', 'men'] },
+    { id: 9, url: './meme-imgs (square)/9.jpg', keywords: ['all', 'baby'] },
+    { id: 10, url: './meme-imgs (square)/10.jpg', keywords: ['all', 'men'] },
+    { id: 11, url: './meme-imgs (square)/11.jpg', keywords: ['all', 'men'] },
+    { id: 12, url: './meme-imgs (square)/12.jpg', keywords: ['all', 'men'] },
+    { id: 13, url: './meme-imgs (square)/13.jpg', keywords: ['all', 'men'] },
+    { id: 14, url: './meme-imgs (square)/14.jpg', keywords: ['all', 'men'] },
+    { id: 15, url: './meme-imgs (square)/15.jpg', keywords: ['all', 'men'] },
+    { id: 16, url: './meme-imgs (square)/16.jpg', keywords: ['all', 'men'] },
+    { id: 17, url: './meme-imgs (square)/17.jpg', keywords: ['all', 'men'] },
+    { id: 18, url: './meme-imgs (square)/18.jpg', keywords: ['all', 'toy'] }
 ];
 
 var gMeme = {
-    selectedImgId: -1,
+    selectedImgId: 0,
     selectedLineIdx: 0,
     lines: []
 }
@@ -47,9 +47,8 @@ function getImgs() {
 function getKeyWords() {
     return gKeywords;
 }
-function setKeyWord(keyWord){
-    console.log('setKeyWord');
-    gFilter= keyWord;
+function setKeyWord(keyWord) {
+    gFilter = keyWord;
 }
 
 function clickImg(imgId) {
@@ -101,7 +100,7 @@ function renderLine(line) {
 }
 
 function addLine(line) {
-    gMeme.selectedLineIdx++;
+    if (gMeme.lines.length) gMeme.selectedLineIdx++;
     var newLine = {
         txt: line,
         size: 40,
@@ -130,8 +129,8 @@ function addLine(line) {
 }
 
 function handleLine(key, value) {
-    debugger
-    var currentLine = gMeme.lines[gMeme.selectedLineIdx - 1];
+    if (!gMeme.lines.length) return;
+    var currentLine = gMeme.lines[gMeme.selectedLineIdx];
     switch (key) {
         case 'up':
             currentLine.posY -= 10;
@@ -168,6 +167,7 @@ function handleLine(key, value) {
 
 
 function switchLine() {
+    if (!gMeme.lines.length) return;
     renderCanvas();
     if (gMeme.selectedLineIdx < gMeme.lines.length - 1) {
         gMeme.selectedLineIdx++;
@@ -188,6 +188,7 @@ function addRect(posY, size) {
 
 function deleteLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    gMeme.selectedLineIdx--;
     renderCanvas()
 }
 
@@ -197,4 +198,18 @@ function getGSaveMeme() {
 }
 function saveMeme() {
     gSaveMeme.push(gMeme);
+}
+
+
+function downloadCanvas(elLink) {
+    renderCanvas();
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-meme.jpg';
+}
+
+function clickShear() {
+    var url = gElCanvas.toDataURL("image/png", 0.1);
+    window.open(`https://www.facebook.com/sharer/sharer.php&pu=${url}`);
+    return false;
 }
