@@ -10,7 +10,7 @@ function renderGallery() {
     const imgs = getImgs();
     var strHtml = '';
     var elImgs = imgs.map(img => {
-        strHtml += `<div><img src="./meme-imgs (square)/${img.id}.jpg" class="memeImg" data-id="${img.id}" alt="" onclick="onSelectedImg(this)"></div>`
+        strHtml += `<div><img src="./meme-imgs (square)/${img.id}.jpg" class="memeImg" data-id="${img.id}" alt="" onclick="onClickImg(this)"></div>`
     });
 
     strHtml += elImgs.join('');
@@ -30,10 +30,10 @@ function renderKeyWords() {
 }
 
 
-function onSelectedImg(elImg) {
+function onClickImg(elImg) {
     document.querySelector(`main`).classList.toggle("hidden");
     document.querySelector(`.meme-editor`).classList.toggle("hidden");
-    selectedImg(elImg.dataset.id);
+    clickImg(elImg.dataset.id);
 }
 
 function onClickGallery() {
@@ -42,20 +42,27 @@ function onClickGallery() {
 }
 
 
-function onAddTxt(input) {
-    addText(input.value);
+function onAddLine(input) {
+    addLine(input.value);
     document.querySelector(`.txt-input`).value = '';
 
 }
-function onMoveUp(){
-    moveUp();
+function onMoveUp() {
+    handleLine('up');
+    // moveUp();
 }
-function onMovedDown(){
-    movedDown();
+function onMovedDown() {
+    handleLine('down');
+    // movedDown();
 }
-function onFontGrow(){
-    fontGrow();
+function onFontGrow() {
+    handleLine('grow');
+    // fontGrow();
 }
-function onFontShrink(){
-    fontShrink();
+function onFontShrink() {
+    handleLine('shrink');
+    // fontShrink();
+}
+function onSwitchLine() {
+    // switchLine();
 }

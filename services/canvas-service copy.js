@@ -2,6 +2,7 @@
 
 var gElCanvas;
 var gCtx;
+
 var gCurrImgUrl;
 var gTexts = [];
 
@@ -17,6 +18,7 @@ function setCanvas(imgUrl) {
 }
 
 function renderCanvas() {
+    resizeCanvas();
     console.log('renderCanvas');
     var img = new Image();
     img.src = gCurrImgUrl;
