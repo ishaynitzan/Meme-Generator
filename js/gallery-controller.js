@@ -8,6 +8,7 @@ function onInit() {
 function renderGallery() {
 
     const imgs = getImgs();
+    if (imgs.length === 0) return;
     var strHtml = '';
     var elImgs = imgs.map(img => {
         strHtml += `<div><img src="./meme-imgs (square)/${img.id}.jpg" class="memeImg" data-id="${img.id}" alt="" onclick="onClickImg(this)"></div>`
@@ -24,7 +25,7 @@ function renderKeyWords() {
     var strHtml = '';
     for (const key in words) {
         const size = words[key] % 5;
-        strHtml += `<li class="flex size${size}">${key}</li>`;
+        strHtml += `<li class="flex size${size}" onclick="onKeyWord(this)">${key}</li>`;
     }
     document.querySelector(`.key-words`).innerHTML = strHtml;
 }
@@ -56,7 +57,14 @@ function onClickAbout() {
     document.querySelector(`.meme-editor`).classList.add("hidden");
     document.querySelector(`.my-meme`).classList.add("hidden");
 }
-
+function onSearchMeme(){
+    console.log('onSearchMeme');
+    const value = document.querySelector(`.search-input`).value;
+    console.log(value);
+    if (value !== '') setKeyWord(value);
+    document.querySelector(`.search-input`).value = '';
+    renderGallery();
+}
 
 function onAddLine() {
     const value = document.querySelector(`.txt-input`).value;
@@ -99,7 +107,6 @@ function onFontChange(value) {
 
 
 function onSaveMeme() {
-    console.log('onSaveMeme');
     saveMeme();
     renderMyMeme();
     document.querySelector(`.btn-my-meme`).click();
@@ -115,4 +122,9 @@ function renderMyMeme() {
     strHtml += elImgs.join('');
 
     document.querySelector(`.my-gallery`).innerHTML = strHtml;
+}
+
+function onKeyWord(elWord) {
+    setKeyWord(elWord.innerText);
+    renderGallery();
 }

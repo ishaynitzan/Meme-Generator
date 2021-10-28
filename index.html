@@ -24,7 +24,7 @@
     <main class="flex column light-bg">
         <nav class="flex row align-center">
             <div class="search flex row align-center">
-                <input type="text" name="search" class="search-input" placeholder="Search">
+                <input type="text" name="search" class="search-input" placeholder="Search" onchange="onSearchMeme()">
                 <i class="fas fa-search"></i>
             </div>
             <ul class="key-words flex row">
@@ -44,14 +44,18 @@
         </div>
         <div class="control-box flex column justify-center align-center ">
             <div class="txt-line flex justify-center">
-                <input type="text" name="" id="" placeholder="add text" class="txt-input">
+                <input type="text" name="" id=""  class="txt-input" placeholder="add text">
             </div>
             <div class="editor-txt flex row align-center">
-                <div class="editor-btn move-up" onclick="onMoveUp()">↑</div>
-                <div class="editor-btn move-down" onclick="onMovedDown()">↓</div>
-                <div class="editor-btn switch" onclick="onSwitchLine()">↑↓</div>
+                <div class="editor-btn move-up" onclick="onMoveUp()">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+                <div class="editor-btn move-down" onclick="onMovedDown()">
+                    <i class="fas fa-arrow-down"></i></div>
+                <div class="editor-btn switch" onclick="onSwitchLine()">
+                    <i class="fas fa-exchange-alt"></i></div>
                 <div class="editor-btn add-txt" onclick="onAddLine()">✚</div>
-                <div class="editor-btn delete-txt" onclick="onDeleteLine()">✂︎</div>
+                <div class="editor-btn delete-txt" onclick="onDeleteLine()"><i class="fas fa-trash"></i></div>
             </div>
             <div class="editor-font flex column align-center">
                 <div class="flex row space-around">
@@ -91,20 +95,21 @@
             <div class="stickers-box editor-btn flex row">
             </div>
             <div class="action-box flex row align-center">
-                <div class="flex"><button  class="editor-btn action-btn share-btn">Share</button></div>
-                <div class="flex"><button  class="editor-btn action-btn save-btn" onclick="onSaveMeme()" >Save</button></div>
-                <div class="flex"><button  class="editor-btn action-btn download-btn">Download</button></div>
+                <div class="flex"><button class="editor-btn action-btn share-btn">Share</button></div>
+                <div class="flex"><button class="editor-btn action-btn save-btn" onclick="onSaveMeme()">Save</button>
+                </div>
+                <div class="flex"><button class="editor-btn action-btn download-btn">Download</button></div>
             </div>
         </div>
     </div>
 
-    <div class="my-meme light-bg flex column align-center">
+    <div class="my-meme light-bg flex column align-center hidden">
         <div class="title flex">MY MEME</div>
         <div class="my-gallery gallery grid">
         </div>
     </div>
 
-    <div class="about light-bg  flex column align-center">
+    <div class="about light-bg  flex column align-center hidden">
         <div class="title">ABOUT</div>
 
     </div>

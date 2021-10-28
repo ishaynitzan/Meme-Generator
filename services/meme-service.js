@@ -2,27 +2,27 @@
 
 var gElCanvas;
 var gCtx;
-var gKeywords = { 'men': 0, 'animal': 0, 'baby': 0, 'toy': 0 }
-
+var gKeywords = { 'all': 0, 'men': 0, 'animal': 0, 'baby': 0, 'toy': 0 }
+var gFilter = 'all'
 var gImgs = [
-    { id: 1, url: './meme-imgs (square)/1.jpg', keywords: ['men'] },
-    { id: 2, url: './meme-imgs (square)/2.jpg', keywords: ['animal'] },
-    { id: 3, url: './meme-imgs (square)/3.jpg', keywords: ['animal baby'] },
-    { id: 4, url: './meme-imgs (square)/4.jpg', keywords: ['animal'] },
-    { id: 5, url: './meme-imgs (square)/5.jpg', keywords: ['baby'] },
-    { id: 6, url: './meme-imgs (square)/6.jpg', keywords: ['men'] },
-    { id: 7, url: './meme-imgs (square)/7.jpg', keywords: ['baby'] },
-    { id: 8, url: './meme-imgs (square)/8.jpg', keywords: ['men'] },
-    { id: 9, url: './meme-imgs (square)/9.jpg', keywords: ['baby'] },
-    { id: 10, url: './meme-imgs (square)/10.jpg', keywords: ['men'] },
-    { id: 11, url: './meme-imgs (square)/11.jpg', keywords: ['men'] },
-    { id: 12, url: './meme-imgs (square)/12.jpg', keywords: ['men'] },
-    { id: 13, url: './meme-imgs (square)/13.jpg', keywords: ['men'] },
-    { id: 14, url: './meme-imgs (square)/14.jpg', keywords: ['men'] },
-    { id: 15, url: './meme-imgs (square)/15.jpg', keywords: ['men'] },
-    { id: 16, url: './meme-imgs (square)/16.jpg', keywords: ['men'] },
-    { id: 17, url: './meme-imgs (square)/17.jpg', keywords: ['men'] },
-    { id: 18, url: './meme-imgs (square)/18.jpg', keywords: ['toy'] }
+    { id: 1, url: './meme-imgs (square)/1.jpg', keywords: ['all', 'men'] },
+    { id: 2, url: './meme-imgs (square)/2.jpg', keywords: ['all','animal'] },
+    { id: 3, url: './meme-imgs (square)/3.jpg', keywords: ['all','animal', 'baby'] },
+    { id: 4, url: './meme-imgs (square)/4.jpg', keywords: ['all','animal'] },
+    { id: 5, url: './meme-imgs (square)/5.jpg', keywords: ['all','baby'] },
+    { id: 6, url: './meme-imgs (square)/6.jpg', keywords: ['all','men'] },
+    { id: 7, url: './meme-imgs (square)/7.jpg', keywords: ['all','baby'] },
+    { id: 8, url: './meme-imgs (square)/8.jpg', keywords: ['all','men'] },
+    { id: 9, url: './meme-imgs (square)/9.jpg', keywords: ['all','baby'] },
+    { id: 10, url: './meme-imgs (square)/10.jpg', keywords: ['all','men'] },
+    { id: 11, url: './meme-imgs (square)/11.jpg', keywords: ['all','men'] },
+    { id: 12, url: './meme-imgs (square)/12.jpg', keywords: ['all','men'] },
+    { id: 13, url: './meme-imgs (square)/13.jpg', keywords: ['all','men'] },
+    { id: 14, url: './meme-imgs (square)/14.jpg', keywords: ['all','men'] },
+    { id: 15, url: './meme-imgs (square)/15.jpg', keywords: ['all','men'] },
+    { id: 16, url: './meme-imgs (square)/16.jpg', keywords: ['all','men'] },
+    { id: 17, url: './meme-imgs (square)/17.jpg', keywords: ['all','men'] },
+    { id: 18, url: './meme-imgs (square)/18.jpg', keywords: ['all','toy'] }
 ];
 
 var gMeme = {
@@ -31,14 +31,25 @@ var gMeme = {
     lines: []
 }
 
-var gSaveMeme= [];
+var gSaveMeme = [];
 
 function getImgs() {
-    return gImgs;
+    const imgs = gImgs.filter((img) => {
+        var isFound = img.keywords.some(key => key === gFilter);
+
+        if (isFound) return img;
+        return null;
+    });
+
+    return imgs;
 }
 
 function getKeyWords() {
     return gKeywords;
+}
+function setKeyWord(keyWord){
+    console.log('setKeyWord');
+    gFilter= keyWord;
 }
 
 function clickImg(imgId) {
@@ -48,7 +59,6 @@ function clickImg(imgId) {
 }
 
 function setCanvas() {
-    console.log('setCanvas')
     gElCanvas = document.querySelector(`canvas`)
     gCtx = gElCanvas.getContext('2d');
     window.addEventListener('resize', () => {
@@ -57,7 +67,6 @@ function setCanvas() {
 }
 
 function resizeCanvas() {
-    console.log('resizeCanvas');
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.scrollWidth;
     gElCanvas.height = elContainer.scrollHeight;
@@ -65,7 +74,6 @@ function resizeCanvas() {
 }
 
 function renderCanvas() {
-    console.log('renderCanvas');
     var img = new Image();
     img.src = gImgs[gMeme.selectedImgId - 1].url;
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
@@ -121,9 +129,9 @@ function addLine(line) {
     addRect(newLine.posY + (gElCanvas.height / 2), newLine.size)
 }
 
-function handleLine(key,value) {
+function handleLine(key, value) {
     debugger
-    var currentLine = gMeme.lines[gMeme.selectedLineIdx-1];
+    var currentLine = gMeme.lines[gMeme.selectedLineIdx - 1];
     switch (key) {
         case 'up':
             currentLine.posY -= 10;
@@ -160,9 +168,7 @@ function handleLine(key,value) {
 
 
 function switchLine() {
-    console.log('switch');
     renderCanvas();
-    console.log(gMeme.selectedLineIdx);
     if (gMeme.selectedLineIdx < gMeme.lines.length - 1) {
         gMeme.selectedLineIdx++;
     } else {
@@ -180,15 +186,15 @@ function addRect(posY, size) {
     gCtx.closePath();
 }
 
-function deleteLine(){
-    gMeme.lines.splice(gMeme.selectedLineIdx,1);
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
     renderCanvas()
 }
 
-function getGSaveMeme(){
-return gSaveMeme;
+function getGSaveMeme() {
+    return gSaveMeme;
 
 }
-function saveMeme(){
+function saveMeme() {
     gSaveMeme.push(gMeme);
 }
