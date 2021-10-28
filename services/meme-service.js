@@ -26,10 +26,12 @@ var gImgs = [
 ];
 
 var gMeme = {
-    selectedImgId: 0,
+    selectedImgId: -1,
     selectedLineIdx: 0,
     lines: []
 }
+
+var gSaveMeme= [];
 
 function getImgs() {
     return gImgs;
@@ -80,7 +82,7 @@ function renderLine(line) {
     const canvasWidth = gElCanvas.width;
     const posX = line.posX;
     const posY = line.posY;
-    gCtx.lineWidth = 6;
+    gCtx.lineWidth = 3;
     gCtx.textAlign = `${line.align}`;
     if (line.isStroke) {
         gCtx.strokeStyle = `${line.strokeColor}`;
@@ -91,6 +93,7 @@ function renderLine(line) {
 }
 
 function addLine(line) {
+    gMeme.selectedLineIdx++;
     var newLine = {
         txt: line,
         size: 40,
@@ -118,9 +121,10 @@ function addLine(line) {
     addRect(newLine.posY + (gElCanvas.height / 2), newLine.size)
 }
 
-function handleLine(value) {
-    var currentLine = gMeme.lines[gMeme.selectedLineIdx];
-    switch (value) {
+function handleLine(key,value) {
+    debugger
+    var currentLine = gMeme.lines[gMeme.selectedLineIdx-1];
+    switch (key) {
         case 'up':
             currentLine.posY -= 10;
             break;
@@ -128,50 +132,32 @@ function handleLine(value) {
             currentLine.posY += 10;
             break;
         case 'grow':
-            currentLine.size += 10;
+            currentLine.size += 5;
             break;
         case 'shrink':
-            currentLine.size -= 10;
+            currentLine.size -= 5;
             break;
-    }
+        case 'color':
+            currentLine.color = value;
+            break;
+        case 'strokeColor':
+            currentLine.strokeColor = value;
+            break;
+        case 'shrink':
+            currentLine.strokeColor = value;
+            break;
+        case 'align':
+            currentLine.align = value;
+            break;
+        case 'font':
+            currentLine.font = value;
+            break;
 
+    }
     renderCanvas()
     addRect(currentLine.posY + (gElCanvas.height / 2), currentLine.size);
-
-
 }
 
-
-
-function moveUp() {
-    console.log('moveUp');
-    var currentLine = gMeme.lines[gMeme.selectedLineIdx];
-    currentLine.posY -= 10;
-    renderCanvas()
-    addRect(currentLine.posY + (gElCanvas.height / 2), currentLine.size)
-}
-
-function movedDown() {
-    console.log('movedDown');
-    var currentLine = gMeme.lines[gMeme.selectedLineIdx];
-    currentLine.posY += 10;
-    renderCanvas()
-    addRect(currentLine.posY + (gElCanvas.height / 2), currentLine.size)
-}
-
-function fontGrow() {
-    console.log('fontGrow');
-    var currentLine = gMeme.lines[gMeme.selectedLineIdx];
-    currentLine.size += 10;
-    renderCanvas()
-}
-
-function fontShrink() {
-    console.log('fontShrink');
-    var currentLine = gMeme.lines[gMeme.selectedLineIdx];
-    currentLine.size -= 10;
-    renderCanvas()
-}
 
 function switchLine() {
     console.log('switch');
@@ -188,7 +174,21 @@ function switchLine() {
 
 function addRect(posY, size) {
     gCtx.beginPath();
+    gCtx.strokeStyle = 'tomato';
     gCtx.rect(0, posY - size, gElCanvas.width, size + 10);
     gCtx.stroke();
     gCtx.closePath();
+}
+
+function deleteLine(){
+    gMeme.lines.splice(gMeme.selectedLineIdx,1);
+    renderCanvas()
+}
+
+function getGSaveMeme(){
+return gSaveMeme;
+
+}
+function saveMeme(){
+    gSaveMeme.push(gMeme);
 }

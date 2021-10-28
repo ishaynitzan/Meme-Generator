@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme-Generator</title>
+    <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
@@ -15,16 +16,16 @@
         <div><img src="./LOGO/LOGO.png" alt="" class="logo"></div>
         <div class="header-nav flex row">
             <div class="btn btn-gallery" onclick="onClickGallery()">gallery</div>
-            <div class="btn btn-my-meme">my meme</div>
-            <div class="btn btn-about">about</div>
+            <div class="btn btn-my-meme" onclick="onClickMyMeme()">my meme</div>
+            <div class="btn btn-about" onclick="onClickAbout()">about</div>
         </div>
     </header>
 
-    <main class="flex column">
+    <main class="flex column light-bg">
         <nav class="flex row align-center">
             <div class="search flex row align-center">
                 <input type="text" name="search" class="search-input" placeholder="Search">
-                <div>☌</div>
+                <i class="fas fa-search"></i>
             </div>
             <ul class="key-words flex row">
             </ul>
@@ -43,44 +44,68 @@
         </div>
         <div class="control-box flex column justify-center align-center ">
             <div class="txt-line flex justify-center">
-                <input type="text" name="" id="" placeholder="add text" onchange="onAddLine(this)" class="txt-input">
+                <input type="text" name="" id="" placeholder="add text" class="txt-input">
             </div>
             <div class="editor-txt flex row align-center">
                 <div class="editor-btn move-up" onclick="onMoveUp()">↑</div>
                 <div class="editor-btn move-down" onclick="onMovedDown()">↓</div>
                 <div class="editor-btn switch" onclick="onSwitchLine()">↑↓</div>
-                <div class="editor-btn add-txt" >✚</div>
-                <div class="editor-btn delete-txt" >✂︎</div>
+                <div class="editor-btn add-txt" onclick="onAddLine()">✚</div>
+                <div class="editor-btn delete-txt" onclick="onDeleteLine()">✂︎</div>
             </div>
             <div class="editor-font flex column align-center">
                 <div class="flex row space-around">
                     <div class="editor-btn font-grow" onclick="onFontGrow()">A+</div>
                     <div class="editor-btn font-shrink" onclick="onFontShrink()">A-</div>
-                    <div class="editor-btn font-left">◀︎</div>
-                    <div class="editor-btn font-center">▲</div>
-                    <div class="editor-btn font-right">►</div>
+                    <div class="editor-btn font-left" onclick="onAlignLine('end')">
+                        <i class="fas fa-align-left"></i>
+                    </div>
+                    <div class="editor-btn font-center" onclick="onAlignLine('center')">
+                        <i class="fas fa-align-justify"></i>
+                    </div>
+                    <div class="editor-btn font-right" onclick="onAlignLine('start')">
+                        <i class="fas fa-align-right"></i>
+                    </div>
                 </div>
                 <div class="flex row space-around">
-                    <div class="editor-btn font-famely">font</div>
-                    <div class="editor-btn stroke-color">
-                        S
-                        <input type="color" name="" id="">
-                    </div>
-                    <div class="editor-btn font-color">
-                        F
-                        <input type="color" name="" id="">
-                    </div>
+                    <select name="" id="" class="editor-btn font-family" onchange="onFontChange(value)">Font
+                        <option value="Impact">Impact</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Arial">Arial</option>
+                    </select>
+                    <button class="editor-btn color-dropdown">
+                        <i class="fas fa-strikethrough"></i>
+                        <div class="color-menu">
+                            <input type="color" name="" id="" onchange="onStrokeColor(value)" class="stroke-color">
+                        </div>
+                    </button>
+                    <button class="editor-btn color-dropdown">
+                        <i class="fas fa-palette"></i>
+                        <div class="color-menu">
+                            <input type="color" name="" id="" onchange="onColor(value)" class="font-color">
+                        </div>
+                    </button>
                 </div>
             </div>
             <div class="stickers-box editor-btn flex row">
             </div>
             <div class="action-box flex row align-center">
-                <div class="flex"><a href="" class="editor-btn share-btn">Share</a></div>
-                <div class="flex"><a href="" class="editor-btn download-btn">Download</a></div>
+                <div class="flex"><button  class="editor-btn action-btn share-btn">Share</button></div>
+                <div class="flex"><button  class="editor-btn action-btn save-btn" onclick="onSaveMeme()" >Save</button></div>
+                <div class="flex"><button  class="editor-btn action-btn download-btn">Download</button></div>
             </div>
         </div>
+    </div>
 
+    <div class="my-meme light-bg flex column align-center">
+        <div class="title flex">MY MEME</div>
+        <div class="my-gallery gallery grid">
+        </div>
+    </div>
 
+    <div class="about light-bg  flex column align-center">
+        <div class="title">ABOUT</div>
 
     </div>
 
