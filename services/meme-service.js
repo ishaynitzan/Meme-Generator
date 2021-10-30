@@ -61,6 +61,7 @@ function clickImg(imgId) {
     resetGMeme();
     setCanvas();
     resizeCanvas();
+    renderCanvas();
 }
 
 function setCanvas() {
@@ -198,12 +199,18 @@ function deleteLine() {
     renderCanvas()
 }
 
-function getGSaveMeme() {
-    return gSaveMeme;
+
+function setGSaveMeme() {
+    gSaveMeme = loadFromStorage("gMyMeme");
 
 }
-function saveMeme() {
+function getGSaveMeme() {
+    return loadFromStorage("gSaveMeme");
+
+}
+function saveMeme(){
     gSaveMeme.push(gMeme);
+    saveToStorage('gSaveMeme',gSaveMeme);
 }
 
 

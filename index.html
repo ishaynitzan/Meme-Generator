@@ -13,7 +13,7 @@
 <body onload="onInit()" class="flex column">
 
     <header class="header flex align-center row">
-        <div><img src="./LOGO/LOGO.png" alt="" class="logo"></div>
+        <img src="./LOGO/LOGO.png" alt="" class="logo">
         <div class="header-nav flex row">
             <div class="btn btn-gallery" onclick="onClickGallery()">gallery</div>
             <div class="btn btn-my-meme" onclick="onClickMyMeme()">my meme</div>
@@ -22,14 +22,16 @@
     </header>
 
     <main class="flex column light-bg">
-        <nav class="flex row align-center">
-            <div class="search flex row align-center">
+        <nav class="flex align-center">
+            <div class="search nav-btn flex row align-center">
                 <input type="text" name="search" class="search-input" placeholder="Search" onchange="onSearchMeme()">
                 <i class="fas fa-search"></i>
             </div>
-            <ul class="key-words flex row">
-            </ul>
-            <div class="btn-more">More</div>
+            
+                <ul class="key-words nav-btn flex row">
+                </ul>
+            
+            <div class="btn-more nav-btn">More</div>
         </nav>
         <div class="gallery grid">
         </div>
@@ -37,23 +39,25 @@
     </main>
 
     <div class="meme-editor flex row hidden">
-        <div class="left-container flex justify-center align-center">
+        <div class="canvas-box flex justify-center align-center">
             <div class="canvas-container">
                 <canvas id="my-canvas" onclick="draw(event)"></canvas>
             </div>
         </div>
         <div class="control-box flex column justify-center align-center ">
             <div class="txt-line flex justify-center">
-                <input type="text" name="" id=""  class="txt-input" placeholder="add text">
+                <input type="text" name="" id="" class="txt-input" placeholder="add text">
             </div>
             <div class="editor-txt flex row align-center">
                 <div class="editor-btn move-up" onclick="onHandleLine('up')">
                     <i class="fas fa-arrow-up"></i>
                 </div>
                 <div class="editor-btn move-down" onclick="onHandleLine('down')">
-                    <i class="fas fa-arrow-down"></i></div>
+                    <i class="fas fa-arrow-down"></i>
+                </div>
                 <div class="editor-btn switch" onclick="onSwitchLine()">
-                    <i class="fas fa-exchange-alt"></i></div>
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
                 <div class="editor-btn add-txt" onclick="onAddLine()">✚</div>
                 <div class="editor-btn delete-txt" onclick="onDeleteLine()"><i class="fas fa-trash"></i></div>
             </div>
@@ -95,9 +99,12 @@
             <div class="stickers-box editor-btn flex row">
             </div>
             <div class="action-box flex row align-center">
-                <div class="flex"><button class="editor-btn action-btn share-btn" onclick="onClickShear()">Share</button></div>
-                <div class="flex"><button class="editor-btn action-btn save-btn" onclick="onSaveMeme()">Save</button></div>
-                <div class="flex"><a class="editor-btn action-btn download-btn" onclick="downloadCanvas(this)" download="">Download</a></div>
+                <div class="flex"><button class="editor-btn action-btn share-btn"
+                        onclick="onClickShear()">Share</button></div>
+                <div class="flex"><button class="editor-btn action-btn save-btn" onclick="onSaveMeme()">Save</button>
+                </div>
+                <div class="flex"><a class="editor-btn action-btn download-btn" onclick="downloadCanvas(this)"
+                        download="">Download</a></div>
             </div>
         </div>
     </div>
@@ -111,8 +118,8 @@
     <div class="about light-bg  flex column align-center hidden">
         <div class="title">ABOUT</div>
         <p>hi, you found THE BEST Meme Generator in the web!<br>
-        Created by <span>ishay nitzan</span><br>
-        as part of an <span>Coding academy</span> course.</p>
+            Created by <span>ishay nitzan</span><br>
+            as part of an <span>Coding academy</span> course.</p>
     </div>
 
     <footer class="main-container"></footer>

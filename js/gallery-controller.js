@@ -11,7 +11,7 @@ function renderGallery() {
     if (imgs.length === 0) return;
     var strHtml = '';
     var elImgs = imgs.map(img => {
-        strHtml += `<div><img src="./meme-imgs (square)/${img.id}.jpg" class="memeImg" data-id="${img.id}" alt="" onclick="onClickImg(this)"></div>`
+        strHtml += `<div><img src="./meme-imgs (square)/${img.id}.jpg" class="meme-img" data-id="${img.id}" alt="" onclick="onClickImg(this)"></div>`
     });
 
     strHtml += elImgs.join('');
@@ -50,6 +50,7 @@ function onClickMyMeme() {
     document.querySelector(`main`).classList.add("hidden");
     document.querySelector(`.meme-editor`).classList.add("hidden");
     document.querySelector(`.about`).classList.add("hidden");
+    renderMyMeme();
 }
 function onClickAbout() {
     document.querySelector(`.about`).classList.remove("hidden");
@@ -76,18 +77,6 @@ function onAddLine() {
 function onHandleLine(keyword) {
     handleLine(keyword);
 }
-// function onMoveUp() {
-//     handleLine('up');
-// }
-// function onMovedDown() {
-//     handleLine('down');
-// }
-// function onFontGrow() {
-//     handleLine('grow');
-// }
-// function onFontShrink() {
-//     handleLine('shrink');
-// }
 function onSwitchLine() {
     switchLine();
 }
@@ -118,9 +107,10 @@ function onSaveMeme() {
 
 function renderMyMeme() {
     const myMeme = getGSaveMeme();
+    if (myMeme === null || !myMeme.length) return;
     var strHtml = '';
     var elImgs = myMeme.map((img, idx) => {
-        strHtml += `<div><img src="./meme-imgs (square)/${idx + 1}.jpg" class="memeImg" data-id="${idx + 1}" alt="" onclick="onClickImg(this)"></div>`
+        strHtml += `<div><img src="./meme-imgs (square)/${img.selectedImgId}.jpg" class="meme-img" data-id="${img.selectedImgId}" alt="img" onclick="onClickImg(this)"></div>`
     });
 
     strHtml += elImgs.join('');
