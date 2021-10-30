@@ -31,12 +31,26 @@ function renderKeyWords() {
 }
 
 
-function onClickImg(elImg) {
+function renderMyMeme() {
+    const myMeme = getGSaveMeme();
+    if (myMeme === null || !myMeme.length) return;
+    var strHtml = '';
+    var elImgs = myMeme.map((img, idx) => {
+        strHtml += `<div><img src="./meme-imgs (square)/${img.selectedImgId}.jpg" class="meme-img" data-id="${idx}" alt="img" onclick="onClickImg(this, true, ${idx})"></div>`
+    });
+
+    strHtml += elImgs.join('');
+
+    document.querySelector(`.my-gallery`).innerHTML = strHtml;
+}
+
+
+function onClickImg(elImg ,  isMyMeme = 0 ,idx = 0) {
     document.querySelector(`main`).classList.add("hidden");
     document.querySelector(`.my-meme`).classList.add("hidden");
     document.querySelector(`.about`).classList.add("hidden");
     document.querySelector(`.meme-editor`).classList.remove("hidden");
-    clickImg(elImg.dataset.id);
+    clickImg(elImg.dataset.id, isMyMeme ,idx);
 }
 
 function onClickGallery() {
@@ -103,19 +117,6 @@ function onSaveMeme() {
     saveMeme();
     renderMyMeme();
     document.querySelector(`.btn-my-meme`).click();
-}
-
-function renderMyMeme() {
-    const myMeme = getGSaveMeme();
-    if (myMeme === null || !myMeme.length) return;
-    var strHtml = '';
-    var elImgs = myMeme.map((img, idx) => {
-        strHtml += `<div><img src="./meme-imgs (square)/${img.selectedImgId}.jpg" class="meme-img" data-id="${img.selectedImgId}" alt="img" onclick="onClickImg(this)"></div>`
-    });
-
-    strHtml += elImgs.join('');
-
-    document.querySelector(`.my-gallery`).innerHTML = strHtml;
 }
 
 function onKeyWord(elWord) {

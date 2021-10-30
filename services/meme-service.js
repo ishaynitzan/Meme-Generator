@@ -53,15 +53,20 @@ function setKeyWord(keyWord) {
 
 function resetGMeme() {
     gMeme.selectedLineIdx = 0;
-    gMeme.lines= [];
-    
+    gMeme.lines = [];
+
 }
-function clickImg(imgId) {
-    gMeme.selectedImgId = imgId;
-    resetGMeme();
+
+
+function clickImg(imgId, isMyMeme, idx) {
+    gMeme.selectedImgId = +imgId;
+    if (isMyMeme) {
+        setGSaveMeme();
+        gMeme = gSaveMeme[idx];
+    }
+    else { resetGMeme(); }
     setCanvas();
     resizeCanvas();
-    renderCanvas();
 }
 
 function setCanvas() {
@@ -201,16 +206,18 @@ function deleteLine() {
 
 
 function setGSaveMeme() {
-    gSaveMeme = loadFromStorage("gMyMeme");
+    gSaveMeme = getGSaveMeme();
 
 }
 function getGSaveMeme() {
-    return loadFromStorage("gSaveMeme");
+    return loadFromStorage("gSaveMeme") ? loadFromStorage("gSaveMeme") : [];
 
 }
-function saveMeme(){
+function saveMeme() {
+    debugger
+    // setGSaveMeme();
     gSaveMeme.push(gMeme);
-    saveToStorage('gSaveMeme',gSaveMeme);
+    saveToStorage('gSaveMeme', gSaveMeme);
 }
 
 
