@@ -8,24 +8,24 @@ var gCtx;
 var gKeywords = { 'all': 0, 'men': 0, 'animal': 0, 'baby': 0, 'toy': 0 }
 var gFilter = 'all'
 var gImgs = [
-    { id: 1, url: './meme-imgs (square)/1.jpg', keywords: ['all', 'men'] },
-    { id: 2, url: './meme-imgs (square)/2.jpg', keywords: ['all', 'animal'] },
-    { id: 3, url: './meme-imgs (square)/3.jpg', keywords: ['all', 'animal', 'baby'] },
-    { id: 4, url: './meme-imgs (square)/4.jpg', keywords: ['all', 'animal'] },
-    { id: 5, url: './meme-imgs (square)/5.jpg', keywords: ['all', 'baby'] },
-    { id: 6, url: './meme-imgs (square)/6.jpg', keywords: ['all', 'men'] },
-    { id: 7, url: './meme-imgs (square)/7.jpg', keywords: ['all', 'baby'] },
-    { id: 8, url: './meme-imgs (square)/8.jpg', keywords: ['all', 'men'] },
-    { id: 9, url: './meme-imgs (square)/9.jpg', keywords: ['all', 'baby'] },
-    { id: 10, url: './meme-imgs (square)/10.jpg', keywords: ['all', 'men'] },
-    { id: 11, url: './meme-imgs (square)/11.jpg', keywords: ['all', 'men'] },
-    { id: 12, url: './meme-imgs (square)/12.jpg', keywords: ['all', 'men'] },
-    { id: 13, url: './meme-imgs (square)/13.jpg', keywords: ['all', 'men'] },
-    { id: 14, url: './meme-imgs (square)/14.jpg', keywords: ['all', 'men'] },
-    { id: 15, url: './meme-imgs (square)/15.jpg', keywords: ['all', 'men'] },
-    { id: 16, url: './meme-imgs (square)/16.jpg', keywords: ['all', 'men'] },
-    { id: 17, url: './meme-imgs (square)/17.jpg', keywords: ['all', 'men'] },
-    { id: 18, url: './meme-imgs (square)/18.jpg', keywords: ['all', 'toy'] }
+    { id: 1, url: './imgs/meme-imgs (square)/1.jpg', keywords: ['all', 'men'] },
+    { id: 2, url: './imgs/meme-imgs (square)/2.jpg', keywords: ['all', 'animal'] },
+    { id: 3, url: './imgs/meme-imgs (square)/3.jpg', keywords: ['all', 'animal', 'baby'] },
+    { id: 4, url: './imgs/meme-imgs (square)/4.jpg', keywords: ['all', 'animal'] },
+    { id: 5, url: './imgs/meme-imgs (square)/5.jpg', keywords: ['all', 'baby'] },
+    { id: 6, url: './imgs/meme-imgs (square)/6.jpg', keywords: ['all', 'men'] },
+    { id: 7, url: './imgs/meme-imgs (square)/7.jpg', keywords: ['all', 'baby'] },
+    { id: 8, url: './imgs/meme-imgs (square)/8.jpg', keywords: ['all', 'men'] },
+    { id: 9, url: './imgs/meme-imgs (square)/9.jpg', keywords: ['all', 'baby'] },
+    { id: 10, url: './imgs/meme-imgs (square)/10.jpg', keywords: ['all', 'men'] },
+    { id: 11, url: './imgs/meme-imgs (square)/11.jpg', keywords: ['all', 'men'] },
+    { id: 12, url: './imgs/meme-imgs (square)/12.jpg', keywords: ['all', 'men'] },
+    { id: 13, url: './imgs/meme-imgs (square)/13.jpg', keywords: ['all', 'men'] },
+    { id: 14, url: './imgs/meme-imgs (square)/14.jpg', keywords: ['all', 'men'] },
+    { id: 15, url: './imgs/meme-imgs (square)/15.jpg', keywords: ['all', 'men'] },
+    { id: 16, url: './imgs/meme-imgs (square)/16.jpg', keywords: ['all', 'men'] },
+    { id: 17, url: './imgs/meme-imgs (square)/17.jpg', keywords: ['all', 'men'] },
+    { id: 18, url: './imgs/meme-imgs (square)/18.jpg', keywords: ['all', 'toy'] }
 ];
 
 var gMeme = {
@@ -62,9 +62,7 @@ function setKeyWord(keyWord) {
 function resetGMeme() {
     gMeme.selectedLineIdx = 0;
     gMeme.lines = [];
-
 }
-
 
 function clickImg(imgId, isMyMeme, idx) {
     gMeme.selectedImgId = +imgId;
@@ -115,7 +113,7 @@ function renderLine(line) {
         gCtx.strokeText(line.txt, line.posX, line.posY);
     }
     gCtx.fillStyle = `${line.color}`;
-    gCtx.fillText(line.txt, line.posX , line.posY);
+    gCtx.fillText(line.txt, line.posX, line.posY);
 }
 
 function addLine(line) {
@@ -131,14 +129,14 @@ function addLine(line) {
         posX: 0,
         posY: 0
     }
-    newLine.posX = gElCanvas.width/2;
+    newLine.posX = gElCanvas.width / 2;
 
     if (gMeme.lines.length === 0) {
-        newLine.posY = gElCanvas.height /4;
+        newLine.posY = gElCanvas.height / 4;
     } else if (gMeme.lines.length === 1) {
-        newLine.posY = 3*gElCanvas.height /4;
+        newLine.posY = 3 * gElCanvas.height / 4;
     } else if (gMeme.lines.length >= 2) {
-        newLine.posY = gElCanvas.height/2;
+        newLine.posY = gElCanvas.height / 2;
     }
     console.log('newLine', newLine.posX, newLine.posY);
     gMeme.lines.push(newLine);
@@ -180,7 +178,7 @@ function handleLine(key, value) {
 
     }
     renderCanvas()
-    addRect(currentLine.posY , currentLine.size);
+    addRect(currentLine.posY, currentLine.size);
 }
 
 
@@ -210,20 +208,20 @@ function deleteLine() {
     renderCanvas()
 }
 
-
 function setGSaveMeme() {
     gSaveMeme = getGSaveMeme();
 
 }
+
 function getGSaveMeme() {
     return loadFromStorage("gSaveMeme") ? loadFromStorage("gSaveMeme") : [];
 
 }
+
 function saveMeme() {
     gSaveMeme.push(gMeme);
     saveToStorage('gSaveMeme', gSaveMeme);
 }
-
 
 function downloadCanvas(elLink) {
     renderCanvas();
@@ -232,13 +230,19 @@ function downloadCanvas(elLink) {
     elLink.download = 'my-meme.jpg';
 }
 
+function shearMeme() {
+    renderCanvas();
+    const memeUrl = gElCanvas.toDataURL();
+    return encodeURIComponent(memeUrl); 
+}
+
 // grad and drop
 
 
 function onMove(ev) {
     console.log('onMove');
-    console.log(ev.offsetX,ev.offsetY);
-   
+    console.log(ev.offsetX, ev.offsetY);
+
     const canvasObject = geCanvasObject();
     if (canvasObject.isDrag) {
         const pos = getEvPos(ev);
@@ -288,20 +292,20 @@ function getEvPos(ev) {
 
 function isObjectClicked(objectPos) {
     var lineIdx = null;
-    var isON = gMeme.lines.some((line,idx) => {
+    var isON = gMeme.lines.some((line, idx) => {
         const { posY, posX } = line
-        const lineStartX = posX - line.size * line.txt.length/2;
-        const lineEndX = posX + line.size * line.txt.length/2;
-        const lineStartY = posY -line.size/2;
-        const lineEndY = posY + line.size/2;
+        const lineStartX = posX - line.size * line.txt.length / 2;
+        const lineEndX = posX + line.size * line.txt.length / 2;
+        const lineStartY = posY - line.size / 2;
+        const lineEndY = posY + line.size / 2;
         if (objectPos.x > lineStartX && objectPos.x < lineEndX &&
-            objectPos.y > lineStartY && objectPos.y < lineEndY){
-                lineIdx = idx;
-                return true
+            objectPos.y > lineStartY && objectPos.y < lineEndY) {
+            lineIdx = idx;
+            return true
         }
         return false;
     });
-    if(isON){
+    if (isON) {
         gCurrentObject.lineNum = lineIdx;
 
     }

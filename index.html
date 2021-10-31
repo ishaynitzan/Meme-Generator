@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme-Generator</title>
-    <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.css">
+    <link rel="stylesheet" href="./font/fontawesome-free-5.15.4-web/css/all.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body onload="onInit()" class="flex column">
 
     <header class="header flex align-center row">
-        <img src="./LOGO/LOGO.png" alt="" class="logo">
+        <img src="./imgs/LOGO/LOGO.png" alt="" class="logo">
         <div class="header-nav flex row">
             <div class="btn btn-gallery" onclick="onClickGallery()">gallery</div>
             <div class="btn btn-my-meme" onclick="onClickMyMeme()">my meme</div>
@@ -27,10 +27,10 @@
                 <input type="text" name="search" class="search-input" placeholder="Search" onchange="onSearchMeme()">
                 <i class="fas fa-search"></i>
             </div>
-            
-                <ul class="key-words nav-btn flex row">
-                </ul>
-            
+
+            <ul class="key-words nav-btn flex row">
+            </ul>
+
             <div class="btn-more nav-btn">More</div>
         </nav>
         <div class="gallery grid">
@@ -38,15 +38,15 @@
 
     </main>
 
-    <div class="meme-editor flex row hidden">
+    <section class="meme-editor flex hidden">
         <div class="canvas-box flex justify-center align-center">
             <div class="canvas-container">
                 <canvas id="my-canvas"></canvas>
             </div>
         </div>
-        <div class="control-box flex column justify-center align-center ">
+        <div class="control-box flex column align-center ">
             <div class="txt-line flex justify-center">
-                <input type="text" name="" id="" class="txt-input" placeholder="add text">
+                <input type="text" name="" id="" class="txt-input" placeholder="add text" onchange="onAddLine()">
             </div>
             <div class="editor-txt flex row align-center">
                 <div class="editor-btn move-up" onclick="onHandleLine('up')">
@@ -99,15 +99,16 @@
             <div class="stickers-box editor-btn flex row">
             </div>
             <div class="action-box flex row align-center">
-                <div class="flex"><button class="editor-btn action-btn share-btn"
-                        onclick="onClickShear()">Share</button></div>
+                <div class="flex"><button class="editor-btn action-btn share-btn" href="" title="Share on Facebook"
+                        target="_blank" onclick="onShearMeme()">Share</button></div>
+                <div class="flex post-btn"></div>
                 <div class="flex"><button class="editor-btn action-btn save-btn" onclick="onSaveMeme()">Save</button>
                 </div>
-                <div class="flex"><a class="editor-btn action-btn download-btn" onclick="downloadCanvas(this)"
+                <div class="flex"><a class="editor-btn action-btn download-btn" onclick="onDownloadCanvas(this)"
                         download="">Download</a></div>
             </div>
         </div>
-    </div>
+    </section>
 
     <div class="my-meme light-bg flex column align-center hidden">
         <div class="title flex">MY MEME</div>

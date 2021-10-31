@@ -11,7 +11,7 @@ function renderGallery() {
     if (imgs.length === 0) return;
     var strHtml = '';
     var elImgs = imgs.map(img => {
-        strHtml += `<div><img src="./meme-imgs (square)/${img.id}.jpg" class="meme-img" data-id="${img.id}" alt="" onclick="onClickImg(this)"></div>`
+        strHtml += `<div><img src="./imgs/meme-imgs (square)/${img.id}.jpg" class="meme-img" data-id="${img.id}" alt="" onclick="onClickImg(this)"></div>`
     });
 
     strHtml += elImgs.join('');
@@ -36,7 +36,7 @@ function renderMyMeme() {
     if (myMeme === null || !myMeme.length) return;
     var strHtml = '';
     var elImgs = myMeme.map((img, idx) => {
-        strHtml += `<div><img src="./meme-imgs (square)/${img.selectedImgId}.jpg" class="meme-img" data-id="${idx}" alt="img" onclick="onClickImg(this, true, ${idx})"></div>`
+        strHtml += `<div><img src="./imgs/meme-imgs (square)/${img.selectedImgId}.jpg" class="meme-img" data-id="${idx}" alt="img" onclick="onClickImg(this, true, ${idx})"></div>`
     });
 
     strHtml += elImgs.join('');
@@ -45,12 +45,12 @@ function renderMyMeme() {
 }
 
 
-function onClickImg(elImg ,  isMyMeme = 0 ,idx = 0) {
+function onClickImg(elImg, isMyMeme = 0, idx = 0) {
     document.querySelector(`main`).classList.add("hidden");
     document.querySelector(`.my-meme`).classList.add("hidden");
     document.querySelector(`.about`).classList.add("hidden");
     document.querySelector(`.meme-editor`).classList.remove("hidden");
-    clickImg(elImg.dataset.id, isMyMeme ,idx);
+    clickImg(elImg.dataset.id, isMyMeme, idx);
 }
 
 function onClickGallery() {
@@ -112,7 +112,6 @@ function onFontChange(value) {
     handleLine('font', value);
 }
 
-
 function onSaveMeme() {
     saveMeme();
     renderMyMeme();
@@ -123,6 +122,15 @@ function onKeyWord(elWord) {
     setKeyWord(elWord.innerText);
     renderGallery();
 }
-function onClickShear() {
-    clickShear();
+
+function onDownloadCanvas() {
+    downloadCanvas();
+}
+
+function onShearMeme() {
+    var url = shearMeme()
+    document.querySelector(`.post-btn`).innerHTML = `<a class="editor-btn action-btn share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}"
+    title="Share on Facebook" target="_blank">
+       Post   
+    </a>`;
 }
