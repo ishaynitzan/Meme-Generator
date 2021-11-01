@@ -206,9 +206,16 @@ nav {
     box-shadow: 0 0 5px 2px #fff;
 }
 
-/* FOOTER */
+/* ABOUT */
 
-footer {
-    grid-area: footer;
-    background-color: blue;
+.about p {
+    width: 85%;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #fff;
+}
+
+p span {
+    color: #ffce12;
 }

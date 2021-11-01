@@ -98,14 +98,20 @@
             </div>
             <div class="stickers-box editor-btn flex row">
             </div>
+            <div class="stickers-box editor-btn flex column justify-center align-center">
+                <div class="flex"><label class="editor-btn action-btn save-btn" for="chk">Upload img</label>
+                    <input id="chk" type="checkbox" />
+                    <input class="upload-input" type="file" onchange="onImgInput(event)" /> 
+                </div>
+            </div>
             <div class="action-box flex row align-center">
-                <div class="flex"><button class="editor-btn action-btn share-btn" href="" title="Share on Facebook"
-                        target="_blank" onclick="onShearMeme()">Share</button></div>
+                <div class="flex"><button class="editor-btn action-btn share-btn"  onclick="onShearMeme()">Share</button></div>
                 <div class="flex post-btn"></div>
                 <div class="flex"><button class="editor-btn action-btn save-btn" onclick="onSaveMeme()">Save</button>
                 </div>
-                <div class="flex"><a class="editor-btn action-btn download-btn" onclick="onDownloadCanvas(this)"
-                        download="">Download</a></div>
+                <div class=" flex"><a class="editor-btn action-btn download-btn" onclick="onDownloadCanvas(this)"
+                        download="">Download</a>
+                </div>
             </div>
         </div>
     </section>
@@ -123,9 +129,9 @@
             as part of an <span>Coding academy</span> course.</p>
     </div>
 
-    <footer class="main-container"></footer>
 </body>
 <script src="./services/localStorage-service.js"></script>
+<script src="./services/upload-service.js"></script>
 <script src="./services/meme-service.js"></script>
 <script src="./js/gallery-controller.js"></script>
 

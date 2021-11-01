@@ -140,11 +140,13 @@ canvas {
     width: 90%;
 }
 
-.action-btn {
-    width: 8rem;
+.upload-input {
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .action-btn {
+    width: 8rem;
     font-size: 1rem;
     display: flex;
     flex-grow: 1;
@@ -164,16 +166,14 @@ canvas {
     background-color: rgb(143, 68, 187);
 }
 
-/* ABOUT */
-
-.about p {
-    width: 85%;
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 1rem;
-    color: #fff;
+.upload-input {
+    display: none;
 }
 
-p span {
-    color: #ffce12;
+#chk:checked + .upload-input {
+    display: block;
+}
+
+#chk {
+    display: none;
 }

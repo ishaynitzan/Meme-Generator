@@ -31,6 +31,7 @@ var gImgs = [
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
+    saveMemeUrl: null,
     lines: []
 }
 
@@ -59,8 +60,9 @@ function setKeyWord(keyWord) {
     gFilter = keyWord;
 }
 
-function resetGMeme() {
+function resetMeme() {
     gMeme.selectedLineIdx = 0;
+    gMeme.saveMemeUrl = null;
     gMeme.lines = [];
 }
 
@@ -70,7 +72,7 @@ function clickImg(imgId, isMyMeme, idx) {
         setGSaveMeme();
         gMeme = gSaveMeme[idx];
     }
-    else { resetGMeme(); }
+    else { resetMeme(); }
     setCanvas();
     resizeCanvas();
 }
@@ -138,7 +140,6 @@ function addLine(line) {
     } else if (gMeme.lines.length >= 2) {
         newLine.posY = gElCanvas.height / 2;
     }
-    console.log('newLine', newLine.posX, newLine.posY);
     gMeme.lines.push(newLine);
     renderCanvas();
     addRect(newLine.posY, newLine.size)
@@ -219,8 +220,13 @@ function getGSaveMeme() {
 }
 
 function saveMeme() {
-    gSaveMeme.push(gMeme);
-    saveToStorage('gSaveMeme', gSaveMeme);
+    var img = new Image();
+    img = gElCanvas.toDataURL()
+    img.onload = () =>{
+        gMeme.saveMemeUrl = img;
+        gSaveMeme.push(gMeme);
+        saveToStorage('gSaveMeme', gSaveMeme);
+    }
 }
 
 function downloadCanvas(elLink) {
@@ -230,49 +236,29 @@ function downloadCanvas(elLink) {
     elLink.download = 'my-meme.jpg';
 }
 
-function shearMeme() {
-    renderCanvas();
-    const memeUrl = gElCanvas.toDataURL();
-    return encodeURIComponent(memeUrl); 
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader()
+
+    reader.onload = function (event) {
+        var img = new Image()
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+function renderImg(img) {
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
 }
 
 // grad and drop
 
-
-function onMove(ev) {
-    console.log('onMove');
-    console.log(ev.offsetX, ev.offsetY);
-
-    const canvasObject = geCanvasObject();
-    if (canvasObject.isDrag) {
-        const pos = getEvPos(ev);
-        const dx = pos.x - gStartPos.x;
-        const dy = pos.y - gStartPos.y;
-        gStartPos = pos;
-        moveObject(dx, dy);
-        renderCanvas()
-    }
-}
 
 function moveObject(dx, dy) {
     gMeme.lines[gCurrentObject.lineNum].posX += dx;
     gMeme.lines[gCurrentObject.lineNum].posY += dy;
 }
 
-function onDown(ev) {
-    console.log('onDown');
-    const pos = getEvPos(ev)
-    if (!isObjectClicked(pos)) return
-    setObjectDrag(true);
-    gStartPos = pos;
-    document.body.style.cursor = 'grabbing'
-}
-
-function onUp() {
-    console.log('onUp');
-    setObjectDrag(false);
-    document.body.style.cursor = 'grab'
-}
 
 function getEvPos(ev) {
     var pos = {
@@ -290,9 +276,9 @@ function getEvPos(ev) {
     return pos
 }
 
-function isObjectClicked(objectPos) {
+function isHoverObject(objectPos) {
     var lineIdx = null;
-    var isON = gMeme.lines.some((line, idx) => {
+    var isOn = gMeme.lines.some((line, idx) => {
         const { posY, posX } = line
         const lineStartX = posX - line.size * line.txt.length / 2;
         const lineEndX = posX + line.size * line.txt.length / 2;
@@ -305,11 +291,19 @@ function isObjectClicked(objectPos) {
         }
         return false;
     });
-    if (isON) {
+    return { isOn, lineIdx };
+}
+
+function isObjectClicked(objectPos) {
+    const HoverObject = isHoverObject(objectPos);
+    var isOn = HoverObject.isOn;
+    var lineIdx = HoverObject.lineIdx;
+    if (isOn) {
         gCurrentObject.lineNum = lineIdx;
 
     }
-    return isON;
+
+    return isOn;
 }
 
 function setObjectDrag(isDrag) {
@@ -337,3 +331,4 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchend', onUp)
 }
+

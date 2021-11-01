@@ -36,7 +36,7 @@ function renderMyMeme() {
     if (myMeme === null || !myMeme.length) return;
     var strHtml = '';
     var elImgs = myMeme.map((img, idx) => {
-        strHtml += `<div><img src="./imgs/meme-imgs (square)/${img.selectedImgId}.jpg" class="meme-img" data-id="${idx}" alt="img" onclick="onClickImg(this, true, ${idx})"></div>`
+        strHtml += `<div><img src=${img.saveMemeUrl}" class="meme-img" data-id="${idx}" alt="img" onclick="onClickImg(this, true, ${idx})"></div>`
     });
 
     strHtml += elImgs.join('');
@@ -128,9 +128,47 @@ function onDownloadCanvas() {
 }
 
 function onShearMeme() {
-    var url = shearMeme()
-    document.querySelector(`.post-btn`).innerHTML = `<a class="editor-btn action-btn share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}"
-    title="Share on Facebook" target="_blank">
-       Post   
-    </a>`;
+    uploadImg()
+}
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderImg)
+}
+
+// grad and drop
+
+function onMove(ev) {
+    const canvasObject = geCanvasObject();
+    const pos = getEvPos(ev);
+    checkHoverObject(pos);
+    if (canvasObject.isDrag) {
+        const dx = pos.x - gStartPos.x;
+        const dy = pos.y - gStartPos.y;
+        gStartPos = pos;
+        moveObject(dx, dy);
+        renderCanvas();
+    }
+}
+
+function onDown(ev) {
+    console.log('onDown');
+    const pos = getEvPos(ev)
+    if (!isObjectClicked(pos)) return
+    setObjectDrag(true);
+    gStartPos = pos;
+    document.body.style.cursor = 'grabbing'
+}
+
+function onUp() {
+    console.log('onUp');
+    setObjectDrag(false);
+}
+
+function checkHoverObject(pos) {
+    const currentObject = isHoverObject(pos);
+    if (currentObject.isOn) {
+        document.body.style.cursor = 'grab';
+    } else {
+        document.body.style.cursor = 'auto'
+    }
 }
