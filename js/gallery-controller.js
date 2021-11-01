@@ -82,8 +82,9 @@ function onSearchMeme() {
 }
 
 function onAddLine() {
-    const value = document.querySelector(`.txt-input`).value;
-    if (value !== '') addLine(value);
+    var value = document.querySelector(`.txt-input`).value;
+    if (value === '') value = "Enter text!";
+    addLine(value);
     document.querySelector(`.txt-input`).value = '';
 }
 

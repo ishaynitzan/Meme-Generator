@@ -222,11 +222,10 @@ function getGSaveMeme() {
 function saveMeme() {
     var img = new Image();
     img = gElCanvas.toDataURL()
-    img.onload = () =>{
-        gMeme.saveMemeUrl = img;
-        gSaveMeme.push(gMeme);
-        saveToStorage('gSaveMeme', gSaveMeme);
-    }
+    gMeme.saveMemeUrl = img;
+    gSaveMeme.push(gMeme);
+    saveToStorage('gSaveMeme', gSaveMeme);
+
 }
 
 function downloadCanvas(elLink) {
